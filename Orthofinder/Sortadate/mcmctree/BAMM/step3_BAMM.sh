@@ -1,0 +1,1 @@
+bamm -c BAMM_diversification.config

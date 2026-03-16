@@ -1,0 +1,12 @@
+#将Figtree.tre放在本地Figtree里面转换为nexus
+FigTree_NEXUS.tre
+
+#转化*100
+library(ape)
+library("phytools")
+tree <- read.nexus("FigTree_NEXUS.tre", force.multi = TRUE)
+tree2 <- tree[[1]]
+tree2$edge.length <- tree2$edge.length*100
+tree3 <- force.ultrametric(tree2)
+is.ultrametric(tree3)
+write.tree(tree3, "Prunus.nw.ultra.tre")
