@@ -2,8 +2,8 @@ cd ../
 mkdir Prunus_gene_tre
 cp ./Prunus_gene_tre_raw/*.treefile ./Prunus_gene_tre
 cd Prunus_gene_tre
-#ÖÃ¸ù
-mkdir ../Prunus_gene_best_rt #£¨µ±Ç°ÔÚgene_alns/Prunus_gene_tre/gene_treeÄ¿Â¼ÏÂ£©
+# Reroot gene trees
+mkdir ../Prunus_gene_best_rt # Note: run within the gene_alns/Prunus_gene_tre/gene_tree directory
 
 #!/bin/bash
 
@@ -13,7 +13,6 @@ mkdir ../Prunus_gene_best_rt #£¨µ±Ç°ÔÚgene_alns/Prunus_gene_tre/gene_treeÄ¿Â¼ÏÂ£
     nw_reroot "$file" Lyonothamnus_floribundus > "$file.tre"
     
     # Move the rerooted tree to the Prunus_gene_best_rt directory
-    # and rename it to best.rt.tre
     mv "$file.tre" ../Prunus_gene_best_rt
     
     # Remove the original tree file

@@ -1,4 +1,4 @@
-setwd("C:/Users/301/Desktop/李属文章数据/tree/1ortholog_MO_MI_1to1/Coalescence")
+setwd("/path/to/cophylo")
 library(ape)
 library(phytools)
 list.files()

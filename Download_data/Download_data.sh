@@ -4,7 +4,7 @@
 prefetch SRR15882990 ./
 #pretch batch download
 prefetch –option-file SRR_Acc_List.txt
-#prefetch –max-size 40G SRR1615263，通过使用–max-size参数来设置下载的最大大小，这样可以确保您下载的数据在限制范围内
+#prefetch --max-size 40G SRR1615263  # Use --max-size to limit download size within the specified range
 #SRR_Acc_List.txt
 ## SRR13783530
 ## SRR23496001
@@ -33,7 +33,7 @@ new_name=$(echo "$line" | awk '{print $2}')
 if [ -e "$old_name" ]
 then
 #rename the filenames
-mv "$old_name" "$new_name" 
+mv "$old_name" "$new_name"
 echo "Renamed $old_name to $new_name"
 else
   echo "File $old_name not found"
@@ -50,14 +50,14 @@ done < "$filename_list"
 
 
 #3.The format change: fastq-dump
-a.sra——fastaq
+a.sra transform fastaq
 for i in *.sra;
 do
 echo $i
 fastq-dump --split-3 $i
 done
 
-b.fasta——fastq
+b.fasta transform fastq
 #single data
 seqtk seq Pygeum_topengii.fasta -F  "J" > Pygeum_topengii.fq
 
@@ -72,19 +72,19 @@ done
 
 (1)single data
 a.Paired
-java -jar /data/xueqin/software/Trimmomatic-0.38/trimmomatic-0.38.jar PE -threads 4 -phred33 Prunus_amygdalus_1.fastq SRR15412870_2.fastq Prunus_amygdalus_1.clean.R1.fq.gz Prunus_amygdalus.clean.unpaired.R1.fq.gz Prunus_amygdalus_2.clean.R2.fq.gz Prunus_amygdalus.clean.unpaired.R2.fq.gz ILLUMINACLIP:/data/xueqin/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+java -jar /path/to/software/Trimmomatic-0.38/trimmomatic-0.38.jar PE -threads 4 -phred33 Prunus_amygdalus_1.fastq SRR15412870_2.fastq Prunus_amygdalus_1.clean.R1.fq.gz Prunus_amygdalus.clean.unpaired.R1.fq.gz Prunus_amygdalus_2.clean.R2.fq.gz Prunus_amygdalus.clean.unpaired.R2.fq.gz ILLUMINACLIP:/path/to/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 
 b.Single
-java -jar /home/xueqin/data/software/Trimmomatic-0.38/trimmomatic-0.38.jar SE -threads 8 -phred33 Amygdalus_pedunculata.fastq Amygdalus_pedunculata.fq.gz ILLUMINACLIP:/home/xueqin/data/software/Trimmomatic-0.38/adapters/TruSeq2-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+java -jar /path/to/software/Trimmomatic-0.38/trimmomatic-0.38.jar SE -threads 8 -phred33 Amygdalus_pedunculata.fastq Amygdalus_pedunculata.fq.gz ILLUMINACLIP:/path/to/software/Trimmomatic-0.38/adapters/TruSeq2-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 
 (2)multiple data
 a.paired_end(trimmomatic_paired.sh)
 #!/bin/bash
-input_dir=/home/xueqin/data/Prunus_data_analyses/Transcriptomic_all/SRA_Transcriptomic/test
-output_dir=/home/xueqin/data/Prunus_data_analyses/Transcriptomic_all/SRA_Transcriptomic/test
+input_dir=/path/to/input
+output_dir=/path/to/output
 #specify the parameter and pathway of the Trimmomatic
-trimmomatic_path=/home/xueqin/data/software/Trimmomatic-0.38/trimmomatic-0.38.jar
-trimmomatic_params="ILLUMINACLIP:/home/xueqin/data/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
+trimmomatic_path=/path/to/software/Trimmomatic-0.38/trimmomatic-0.38.jar
+trimmomatic_params="ILLUMINACLIP:/path/to/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
 #deal with the sample_1.fastq
 for sample in ${input_dir}/*_1.fastq; do
 #extract the sample name(it means the delete the "_1.fastq")
@@ -100,10 +100,10 @@ done
 
 b.single_end(trimmomatic_single.sh)
 #!/bin/bash
-input_dir=/home/xueqin/data/Prunus_dada_analyses/Transcriptomic_all/SRA_Transcriptomic/Fastq_Transcritomic/Singer
-output_dir=/home/xueqin/data/Prunus_dada_analyses/Transcriptomic_all/SRA_Transcriptomic
-trimmomatic_path=/home/xueqin/data/software/Trimmomatic-0.38/trimmomatic-0.38.jar
-trimmomatic_params="ILLUMINACLIP:/home/xueqin/data/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
+input_dir=/path/to/input/Singer
+output_dir=/path/to/output
+trimmomatic_path=/path/to/software/Trimmomatic-0.38/trimmomatic-0.38.jar
+trimmomatic_params="ILLUMINACLIP:/path/to/software/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
 for sample in ${input_dir}/*.fastq; do
   sample_name=$(basename ${sample} .fastq)
   reads=${sample}
@@ -123,4 +123,3 @@ do
 echo $i
 gunzip $i
 done
-

@@ -3,7 +3,7 @@ rm(list=ls())
 library("ape")
 library("phytools")
 
-# input tree file from bash stream
+# Input tree file from bash stream
 treefile <- commandArgs(TRUE)
 
 # Ensure treefile is provided
@@ -64,7 +64,7 @@ node_adjust_ultrametric <- function(phy, node.diff.log) {
 }
 
 # Read tree
-tree <- read.tree("/data/xueqin/Project/Prunus/Hybpiper_genome_orthofinder/Orthofinder_only_Prunus_9_namelist_08_27_delete_lower_50/Prunus_paralog/1old_treeshrink0.2_final/26_MO_final_alignments_trimmed/Prunus_treeshrink/Prunus_treeshrink_trimal/Prunus_sortadate_1,3,2/sortadate_35/Prunus_mcmctree/approx1/BAMM/Prunus.mcmctree.dated_no_outgroup.tre")
+tree <- read.tree("/path/to/BAMM/Prunus.mcmctree.dated_no_outgroup.tre")
 
 # Generate the output file name
 out.name <- gsub(".tre", ".DR.csv", basename(treefile))

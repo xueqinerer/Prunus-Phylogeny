@@ -1,1 +1,1 @@
-Rscript DR_statistic.R /data/xueqin/Project/Prunus/Hybpiper_genome_orthofinder/Orthofinder_only_Prunus_9_namelist_08_27_delete_lower_50/Prunus_paralog/1old_treeshrink0.2_final/26_MO_final_alignments_trimmed/Prunus_treeshrink/Prunus_treeshrink_trimal/Prunus_sortadate_1,3,2/sortadate_35/Prunus_mcmctree/approx1/BAMM/Prunus.mcmctree.dated_no_outgroup.tre
+Rscript DR_statistic.R /path/to/BAMM/Prunus.mcmctree.dated_no_outgroup.tre

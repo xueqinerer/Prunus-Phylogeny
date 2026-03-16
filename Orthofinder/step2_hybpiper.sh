@@ -1,13 +1,14 @@
-while read name; 
-do 
-hybpiper assemble -t_aa con_orthofinder_only_Prunus_9_genome.fa -r ${name}_R1.fq ${name}_R2.fq --prefix $name --diamond --hybpiper_output /data/xueqin/Project/Prunus/Hybpiper_genome_orthofinder/Orthofinder_only_Prunus_9_namelist_08_27_delete_lower_50/FNA/FNA;
+while read name;
+do
+hybpiper assemble -t_aa con_orthofinder_only_Prunus_9_genome.fa -r ${name}_R1.fq ${name}_R2.fq --prefix $name --diamond --hybpiper_output /path/to/output/FNA;
 done < namelist_08_27_delete_lower_50.txt
 
 
-**hybpiper paralog_retriever**
+# Run HybPiper paralog_retriever to extract paralogous sequences
 hybpiper paralog_retriever namelist_08_27_delete_lower_50.txt -t_dna con_orthofinder_only_Prunus_9_genome.fa
-#paralogs_all
-#paralogs_no_chimeras
-#组装产生多个contigs时则会存在
-#HybPiper检测到多个包含长编码序列的contigs时-默认情况下至少75%的基因序列
-#paralog_report.tsv：如果> 1，则为潜在的旁系基因
+# Output directories:
+#   paralogs_all          - all detected paralog sequences
+#   paralogs_no_chimeras  - paralogs with chimeric sequences removed
+# Note: A warning is issued when multiple contigs are assembled for a single locus
+# HybPiper flags loci where detected paralogs exceed 75% of the contig threshold
+# In paralog_report.tsv, genes with coverage > 1 are considered potential paralogs

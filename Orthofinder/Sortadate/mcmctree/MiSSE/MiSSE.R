@@ -1,26 +1,26 @@
 library(hisse)
 library(ape)
 
-# ========= 基本参数 =========
-tree_path <- "C:/Users/301/Desktop/李属文章数据/BAMM_MO_35,1,3,2/Misse/Prunus.mcmctree.dated_no_outgroup.tre"  # 你的树文件路径
-out_dir <- "C:/Users/301/Desktop/李属文章数据/BAMM_MO_35,1,3,2/Misse"                    # 输出目录
+# ========= Basic parameters =========
+tree_path <- "/path/to/mcmctree/Prunus.mcmctree.dated_no_outgroup.tre"
+out_dir <- "/path/to/mcmctree/Misse"
 dir.create(out_dir, showWarnings = FALSE)
 
-# ========= 读入树 =========
+# ========= Read tree =========
 tree <- read.tree(tree_path)
 sampled_species <- length(tree$tip.label)
-total_species <- 352   # 你的总物种数
+total_species <- 352   # Total species count in Prunus
 f.vec <- 0.2357954545
 
-# ========= 运行 MiSSE 模型 (1–5 隐含状态) =========
+# ========= Run MiSSE models (1-5 hidden states) =========
 for (model.number in 1:5) {
   outfile <- file.path(out_dir, paste0("misse.", model.number, ".Rsave"))
-  
+
   if (file.exists(outfile)) {
-    cat("Model", model.number, "已经存在，跳过。\n")
+    cat("Model", model.number, "already exists, skipping.\n")
     next
   }
-  
+
   misse.fit <- NA
   cat("Running MiSSE model", model.number, "...\n")
   if (model.number == 1) {
@@ -34,12 +34,12 @@ for (model.number in 1:5) {
   } else if (model.number == 5) {
     misse.fit <- MiSSE(phy = tree, f = f.vec, turnover = c(1,2,3,4,5), eps = c(0,0,0,0,0))
   }
-  
+
   save(tree, misse.fit, file = outfile)
-  cat("完成: model", model.number, "\n")
+  cat("Completed: model", model.number, "\n")
 }
 
-# ========= 汇总结果 =========
+# ========= Summarize results =========
 files <- list.files(path = out_dir, pattern = "misse.*\\.Rsave$", full.names = TRUE)
 results <- list()
 
@@ -47,7 +47,7 @@ for (file in files) {
   load(file)
   split_name <- strsplit(basename(file), "\\.")[[1]]
   model.number <- split_name[2]
-  
+
   if (exists("misse.fit") && !is.null(misse.fit)) {
     df <- data.frame(
       model.number = model.number,
@@ -67,14 +67,14 @@ if (length(results) > 0) {
             row.names = FALSE)
   saveRDS(results_all,
           file = file.path(out_dir, "misse.all_final_results.rds"))
-  cat("所有结果已汇总。\n")
+  cat("All results summarized.\n")
 }
 
 
-#可视化
+# Visualization
 library(hisse)
 library(ape)
-setwd("C:/Users/301/Desktop/李属文章数据/BAMM_MO_35,1,3,2/Misse")
+setwd("/path/to/mcmctree/Misse")
 load("misse.1.Rsave")
 
 phy <- read.tree("Prunus.mcmctree.dated_no_outgroup.tre")
@@ -82,14 +82,14 @@ turnover <- c(1,2)
 eps <- c(1,1)
 two.rate <- MiSSE(phy, f=0.2357954545, turnover=turnover, eps=eps)
 
-two.rate.recon <- MarginReconMiSSE(phy=phy, f=0.2357954545,  hidden.states=2, 
+two.rate.recon <- MarginReconMiSSE(phy=phy, f=0.2357954545, hidden.states=2,
 pars=two.rate$solution, AIC=two.rate$AIC)
 save(phy, two.rate.recon, file = "two.rate.recon.Rsave")
 
-load("misse.vignette.Rsave") # Line above shows the command to create this result.
+load("misse.vignette.Rsave")
 class(two.rate.recon)
 
-pdf("two.rate.recon.pdf",height = 12,width = 8)
+pdf("two.rate.recon.pdf", height=12, width=8)
 plot.misse.states(two.rate.recon, rate.param="net.div", show.tip.label=TRUE, type="phylogram",
                   fsize=0.8, legend="none")
 dev.off()
