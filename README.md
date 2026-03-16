@@ -20,7 +20,8 @@ This repository contains all scripts used in the phylogenomic study of *Prunus* 
   - [7.1 FiSSE](#71-fisse)
   - [7.2 MiSSE](#72-misse)
   - [7.3 MuSSE](#73-musse)
-  - [7.4 State Transition Counts](#74-state-transition-counts)
+  - [7.4 HiSSE](#74-hisse)
+  - [7.5 State Transition Counts](#75-state-transition-counts)
 - [8. Phylogenetic Signal](#8-phylogenetic-signal)
 - [9. Tree Comparison (TreeCmp)](#9-tree-comparison-treecmp)
 - [10. Cophylogenetic Analysis](#10-cophylogenetic-analysis)
@@ -187,13 +188,21 @@ Fit paleoenvironment-dependent birth–death models to the dated phylogeny.
 |--------|-------------|
 | [Musse_inflorescence_types_Musse.R](Orthofinder/Sortadate/mcmctree/MuSSE/Musse_inflorescence_types_Musse.R) | Run MuSSE (Multi-State SSE) for inflorescence type (3 states: 0 = solitary, 1 = corymbose, 2 = racemose); compare null / free-λ / free-μ / full models by AIC; run Bayesian MCMC for the best model (free-λ); plot posterior speciation and net diversification rate densities per state |
 
-### 7.4 State Transition Counts
+### 7.4 HiSSE
+
+**Directory:** `Orthofinder/Sortadate/mcmctree/HiSSE/`
+
+| Script | Description |
+|--------|-------------|
+| [hisse.R](Orthofinder/Sortadate/mcmctree/HiSSE/hisse.R) | Automated HiSSE pipeline for all binary traits in a `traits/` folder: fit 4 models per trait (BiSSE full, BiSSE null, HiSSE full, HiSSE CID-2 null); save per-model RData; compute AICc and AIC weights; export per-CSV and combined summary CSV |
+
+### 7.5 State Transition Counts
 
 **Directory:** `Orthofinder/Sortadate/mcmctree/`
 
 | Script | Description |
 |--------|-------------|
-| [4个状态转换次数统计.R](Orthofinder/Sortadate/mcmctree/4个状态转换次数统计.R) | Stochastic character mapping (1000 simulations, `make.simmap`) to estimate transition counts and time spent in each state for four traits: inflorescence type (ER model), petal presence/absence (ER), ploidy (ER), and lifeform — evergreen vs. deciduous (ARD) |
+| [Four_state_transition_times.R](Orthofinder/Sortadate/mcmctree/Four_state_transition_times.R) | Stochastic character mapping (1000 simulations, `make.simmap`) to estimate transition counts and time spent in each state for four traits: inflorescence type (ER model), petal presence/absence (ER), ploidy (ER), and lifeform — evergreen vs. deciduous (ARD) |
 
 ---
 
