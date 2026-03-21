@@ -2,13 +2,13 @@
 
 This repository contains all scripts used in the phylogenomic study of *Prunus* (Rosaceae). The pipeline covers raw data download, sequence assembly, gene/species tree inference, divergence time estimation, diversification analyses, and trait evolution.
 
-![Summary figure of _Prunus__ evolution](Prunus_summary.png)
+![Summary figure of _Prunus_ evolution](Prunus_summary.png)
 
 If you use any data and script in our study, please cite:
 
-Xueqin Wang, Xin Liu, Zijia Lu, Tao Xiong, Liguo Zhang, Wyckliffe Omondi Omollo, Xinru Zhang, Mengmeng Wang, Jie Zhang, Zhun Xu, Guangwan Hu, Binbin Liu, Richard G. J. Hodel, Jun Wen, Zhiduan Chen, Miao Sun. (2026). Nuclear Phylogenomics Sheds Light on Traits- and Environment-Driven Diversification, in _Prunus_ s.l. (Rosaceae).
+**Xueqin Wang**, Xin Liu, Zijia Lu, Tao Xiong, Liguo Zhang, Wyckliffe Omondi Omollo, Xinru Zhang, Mengmeng Wang, Jie Zhang, Zhun Xu, Guangwan Hu, Binbin Liu, Richard G. J. Hodel, Jun Wen, Zhiduan Chen, Miao Sun. (2026). Nuclear Phylogenomics Sheds Light on Traits- and Environment-Driven Diversification, in _Prunus_ s.l. (Rosaceae).
 
-**Note:***  
+**Note:**  
 	"*All absolute file paths in the scripts have been replaced with `/path/to/...` placeholders — update them to match your local file system before running.*"
 
 
