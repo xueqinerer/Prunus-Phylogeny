@@ -78,7 +78,3 @@ cd Prunus_treeshrink_trimal
 # Merge all filtered alignments into a supermatrix
 pxcat -s ./Prunus_treeshrink_trimal/*.fasta -p Prunus_sp_partition_treeshrink_0.2.txt -o Prunus_sp_supermatrix_treeshrink_0.2.fasta
 
-bash step4_iqtree2.sh
-bash step5_reroot.sh
-Rscript step6_reroot.R
-bash step7_astral.sh
