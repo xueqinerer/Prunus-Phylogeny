@@ -1,6 +1,59 @@
-# Prunus Phylogenomics Analysis Pipeline
+#  Phylogenomics of _Prunus_
 
-This repository contains all scripts used in the phylogenomic study of *Prunus* (Rosaceae). The pipeline covers raw data download, sequence assembly, gene/species tree inference, divergence time estimation, diversification rate analyses, and trait evolution.
+This repository contains all scripts used in the phylogenomic study of *Prunus* (Rosaceae). The pipeline covers raw data download, sequence assembly, gene/species tree inference, divergence time estimation, diversification analyses, and trait evolution.
+
+If you use any data and script in our study, please cite:
+
+Xueqin Wang, Xin Liu, Zijia Lu, Tao Xiong, Liguo Zhang, Wyckliffe Omondi Omollo, Xinru Zhang, Mengmeng Wang, Jie Zhang, Zhun Xu, Guangwan Hu, Binbin Liu, Richard G. J. Hodel, Jun Wen, Zhiduan Chen, Miao Sun. (2026). Nuclear Phylogenomics Sheds Light on Traits- and Environment-Driven Diversification, in _Prunus_ s.l. (Rosaceae).
+
+**Note:***
+	"*All absolute file paths in the scripts have been replaced with `/path/to/...` placeholders — update them to match your local file system before running.*"
+
+
+## Software Requirements
+
+### Command-line tools
+
+| Software | Use |
+|----------|-----|
+| HybPiper ≥ 2.0 | Target enrichment assembly; paralog retrieval |
+| IQ-TREE 2 ≥ 2.2 | Gene tree inference |
+| ASTRAL 5.7.8 | Coalescent species tree (unweighted) |
+| ASTRAL-Pro3 | Coalescent species tree (multi-copy) |
+| TreeShrink ≥ 1.3 | Long-branch filtering |
+| MAD | Minimum ancestor deviation rerooting |
+| OrthoFinder ≥ 2.5 | Ortholog identification |
+| PaRaGone | Paralog pruning (MO / MI / 1-to-1) |
+| MCMCtree (PAML) | Bayesian divergence time estimation |
+| SortaDate | Clock-gene selection |
+| BAMM ≥ 2.5 | Diversification rate shifts |
+| CLaDS2 (Julia) | Cladogenetic diversification shifts |
+| TreeCmp 2.0-b76 | Tree topology distance comparison |
+| Trimmomatic 0.38 | Read quality trimming |
+| FastQC / MultiQC | Quality control |
+| seqtk | Format conversion |
+| AMAS | Alignment concatenation |
+| nw_reroot / nw_ed (Newick Utilities) | Tree manipulation |
+
+### R packages
+
+| Package | Use |
+|---------|-----|
+| ape | Tree I/O, manipulation, ACE |
+| phytools | cophylo, make.simmap, phylosig |
+| geiger | Model fitting, name.check |
+| BAMMtools | BAMM post-processing |
+| MCMCtreeR | Dated tree visualisation |
+| RPANDA | Paleoenvironment diversification models |
+| hisse | MiSSE hidden-state diversification |
+| diversitree | MuSSE / FiSSE |
+| caper | D statistic (phylo.d) |
+| ggplot2 / ggraph / igraph | Visualisation, Q-network plots |
+| pspline | Spline fitting for paleotemperature / CO₂ |
+| viridis / RColorBrewer / scales | Color palettes |
+| qpcR | Akaike weights |
+
+---
 
 ---
 
@@ -237,49 +290,3 @@ Fit paleoenvironment-dependent birth–death models to the dated phylogeny.
 
 ---
 
-## Software Requirements
-
-### Command-line tools
-
-| Software | Use |
-|----------|-----|
-| HybPiper ≥ 2.0 | Target enrichment assembly; paralog retrieval |
-| IQ-TREE 2 ≥ 2.2 | Gene tree inference |
-| ASTRAL 5.7.8 | Coalescent species tree (unweighted) |
-| ASTRAL-Pro3 | Coalescent species tree (multi-copy) |
-| TreeShrink ≥ 1.3 | Long-branch filtering |
-| MAD | Minimum ancestor deviation rerooting |
-| OrthoFinder ≥ 2.5 | Ortholog identification |
-| PaRaGone | Paralog pruning (MO / MI / 1-to-1) |
-| MCMCtree (PAML) | Bayesian divergence time estimation |
-| SortaDate | Clock-gene selection |
-| BAMM ≥ 2.5 | Diversification rate shifts |
-| CLaDS2 (Julia) | Cladogenetic diversification shifts |
-| TreeCmp 2.0-b76 | Tree topology distance comparison |
-| Trimmomatic 0.38 | Read quality trimming |
-| FastQC / MultiQC | Quality control |
-| seqtk | Format conversion |
-| AMAS | Alignment concatenation |
-| nw_reroot / nw_ed (Newick Utilities) | Tree manipulation |
-
-### R packages
-
-| Package | Use |
-|---------|-----|
-| ape | Tree I/O, manipulation, ACE |
-| phytools | cophylo, make.simmap, phylosig |
-| geiger | Model fitting, name.check |
-| BAMMtools | BAMM post-processing |
-| MCMCtreeR | Dated tree visualisation |
-| RPANDA | Paleoenvironment diversification models |
-| hisse | MiSSE hidden-state diversification |
-| diversitree | MuSSE / FiSSE |
-| caper | D statistic (phylo.d) |
-| ggplot2 / ggraph / igraph | Visualisation, Q-network plots |
-| pspline | Spline fitting for paleotemperature / CO₂ |
-| viridis / RColorBrewer / scales | Color palettes |
-| qpcR | Akaike weights |
-
----
-
-*All absolute file paths in the scripts have been replaced with `/path/to/...` placeholders — update them to match your local file system before running.*
